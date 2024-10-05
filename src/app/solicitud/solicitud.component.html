@@ -1,0 +1,66 @@
+<div class="solicitud-container">
+    <div class="formulario">
+        <h1 class="titulo">SOLICITUD</h1>
+        <label for="monto">Ingrese el monto solicitado:</label>
+        <input 
+            type="number" 
+            id="monto" 
+            [(ngModel)]="monto" 
+            placeholder="S/..." 
+            aria-label="Ingrese el monto solicitado"
+        />
+        <div class="opciones-prestamo">
+            <label>Opción de préstamo:</label>
+            <button 
+                type="button" 
+                (click)="seleccionarOpcion(1)" 
+                [class.selected]="opcion === 1" 
+                aria-label="Préstamo a un mes con 10% de interés"
+            >
+                A un mes (10%)
+            </button>
+            <button 
+                type="button" 
+                (click)="seleccionarOpcion(6)" 
+                [class.selected]="opcion === 6" 
+                aria-label="Préstamo a 6 meses con 20% de interés"
+            >
+                A 6 meses (20%)
+            </button>
+        </div>
+
+        <div class="botones-accion">
+            <button 
+                type="button" 
+                class="calculo-btn" 
+                (click)="calcularPrestamo()" 
+                aria-label="Calcular préstamo"
+            >
+                Realizar cálculo
+            </button>
+            <button 
+                type="button" 
+                class="aprobar-btn" 
+                (click)="aprobarPrestamo()" 
+                aria-label="Aprobar préstamo"
+            >
+                Aprobar Préstamo
+            </button>
+        </div>
+    </div>
+
+    <div class="resumen-prestamo">
+        <h2>Préstamo</h2>
+        <p>Monto Solicitado: S/{{ monto }}</p>
+        <p>Cuotas: {{ cuotas }}</p>
+        <p>Interés Aplicado: {{ interes }}%</p>
+        <p>Monto Total a Pagar: S/{{ montoTotal }}</p>
+        <button 
+            type="button" 
+            class="cronograma-btn" 
+            aria-label="Ver cronograma de pagos"
+        >
+            Ver cronograma de pagos
+        </button>
+    </div>
+</div>
