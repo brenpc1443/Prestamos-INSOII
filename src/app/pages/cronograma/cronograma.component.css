@@ -1,0 +1,66 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    background-color: rgb(49, 103, 110);
+    color: white;
+}
+
+h2 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: white; /* Fondo blanco para la tabla */
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #6ca0ff;
+    color: white; /* Color del texto de los encabezados */
+}
+
+td {
+    color: black; /* Cambiar el color del texto en las celdas a negro */
+}
+
+.total-label {
+    text-align: right;
+    font-weight: bold;
+}
+
+.total-value {
+    background-color: black;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    color: black; /* Cambiar el color del texto a negro */
+}
+
+.btn-primary {
+    background-color: #6ca0ff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white; /* Mantener el texto del botón en blanco */
+}
+
+.btn-primary:hover {
+    background-color: #5591ff;
+}

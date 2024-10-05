@@ -1,0 +1,57 @@
+<div class="container">
+    <h2>Cronograma de Pagos</h2>
+    <div class="form-box">
+        <form (ngSubmit)="calcularCronograma()">
+            <div class="form-group">
+                <label for="montoPrestamo">Monto del Préstamo</label>
+                <input 
+                    type="number" 
+                    id="montoPrestamo" 
+                    [(ngModel)]="montoPrestamo"
+                    name="montoPrestamo"
+                    class="form-control" 
+                    required 
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="tipoInteres">Tipo de Interés</label>
+                <select 
+                    id="tipoInteres" 
+                    [(ngModel)]="tipoInteres"
+                    name="tipoInteres" 
+                    class="form-control"
+                    required
+                >
+                    <option value="">Seleccione una opción</option>
+                    <option value="10% - 1 Mes">10% - 1 Mes</option>
+                    <option value="20% - 6 Meses">20% - 6 Meses</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Calcular Cronograma</button>
+        </form>
+
+        <!-- Tabla del cronograma -->
+        <table class="table" *ngIf="cronograma.length > 0">
+            <thead>
+                <tr>
+                    <th>Cuota</th>
+                    <th>Fecha de Pago</th>
+                    <th>Cuota Fija</th>
+                    <th>Interés</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pago of cronograma">
+                    <td>{{ pago.cuota }}</td>
+                    <td>{{ pago.fecha }}</td>
+                    <td>{{ pago.cuotaFija }}</td>
+                    <td>{{ pago.interes }}</td>
+                    <td>{{ pago.total }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

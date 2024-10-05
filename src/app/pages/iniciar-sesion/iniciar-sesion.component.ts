@@ -3,8 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, Router } from '@angular/router';
 import { UserService } from '../../services/usuario/usuario.service';
-import { DniService } from '../../APIs/dni.service';
-import { RucService } from '../../APIs/ruc.service';
 
 @Component({
   selector: 'app-login',
