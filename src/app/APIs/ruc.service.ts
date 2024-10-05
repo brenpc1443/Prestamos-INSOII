@@ -13,7 +13,7 @@ export class RucService {
 
   constructor(private http: HttpClient) {}
 
-  getRUC(ruc: number): Observable<any> {
+  getRUC(ruc: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${ruc}?token=${this.token}`);
   }
 }

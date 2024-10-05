@@ -13,7 +13,7 @@ export class DniService {
 
   constructor(private http: HttpClient) {}
 
-  getDNI(dni: number): Observable<any> {
+  getDNI(dni: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${dni}/?api_token=${this.token}`);
   }
 }
