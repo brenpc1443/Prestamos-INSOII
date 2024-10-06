@@ -8,7 +8,7 @@ import { UsuarioType } from '../../types/usuario.type';
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = 'http://localhost:8080/api/usuarios';
+  private apiUrl = 'https://prestanet-api.onrender.com/api/usuarios';
 
   constructor(private http: HttpClient) {}
 

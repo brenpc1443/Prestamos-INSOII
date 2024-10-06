@@ -8,7 +8,7 @@ import { ClienteType } from '../../types/cliente.type';
   providedIn: 'root',
 })
 export class ClienteService {
-  private apiUrl = 'http://localhost:8080/api/clientes';
+  private apiUrl = 'https://prestanet-api.onrender.com/api/clientes';
 
   constructor(private http: HttpClient) {}
 

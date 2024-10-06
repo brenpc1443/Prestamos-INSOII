@@ -8,7 +8,7 @@ import { PrestamoType } from '../../types/prestamo.type';
   providedIn: 'root',
 })
 export class PrestamoService {
-  private apiUrl = 'http://localhost:8080/api/prestamos';
+  private apiUrl = 'https://prestanet-api.onrender.com/api/prestamos';
 
   constructor(private http: HttpClient) {}
 

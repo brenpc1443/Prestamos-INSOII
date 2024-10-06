@@ -8,7 +8,7 @@ import { CronogramaPagoType } from '../../types/cronogramaPago.type';
   providedIn: 'root',
 })
 export class CronogramaPagoService {
-  private apiUrl = 'http://localhost:8080/api/cronograma';
+  private apiUrl = 'https://prestanet-api.onrender.com/api/cronograma';
 
   constructor(private http: HttpClient) {}
 
