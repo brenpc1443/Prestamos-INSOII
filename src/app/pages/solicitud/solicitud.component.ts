@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // Importar FormsModule para usar [(ngModel)]
+import { FormsModule } from '@angular/forms';
+import { PrestamoService } from '../../services/prestamo/prestamo.service';
 
 @Component({
   selector: 'app-solicitud',
@@ -36,7 +37,7 @@ export class SolicitudComponent {
   aprobarPrestamo(): void {
     if (this.montoTotal > 0) { // Validar que se haya calculado un monto total
       alert('Préstamo aprobado por un total de S/' + this.montoTotal);
-      
+
     } else {
       alert('Realice el cálculo antes de aprobar el préstamo.'); // Alerta si no se ha calculado aún
     }
