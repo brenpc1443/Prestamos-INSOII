@@ -23,7 +23,7 @@ export class LoginComponent {
       (user) => {
         if (user) {
           localStorage.setItem('currentUser', JSON.stringify(user));
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/cronograma']);
         } else {
           this.errorMessage = 'Nombre de usuario o contraseña incorrectos';
         }

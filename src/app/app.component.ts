@@ -6,9 +6,12 @@ import { RouterOutlet, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, /*ValidarUsuarioComponent, CronogramaComponent*/],
+  imports: [
+    RouterOutlet,
+    RouterModule /*ValidarUsuarioComponent, CronogramaComponent*/,
+  ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'Prestamos-INSOII';

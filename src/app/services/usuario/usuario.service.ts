@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { UsuarioType } from '../../types/usuario.type'; // Asegúrate de tener el modelo adecuado
+import { UsuarioType } from '../../types/usuario.type';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = 'https://tu-api.com/usuarios'; // Cambia por la URL de tu API
+  private apiUrl = 'http://localhost:8080/api/usuarios';
 
   constructor(private http: HttpClient) {}
 
