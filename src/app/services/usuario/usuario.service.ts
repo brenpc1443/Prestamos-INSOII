@@ -1,36 +1,58 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { UsuarioType } from '../../types/usuario.type'; // Asegúrate de tener el modelo adecuado
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = 'https://tu-api.com/login'; // Cambia por la URL de tu API
+  private apiUrl = 'https://tu-api.com/usuarios'; // Cambia por la URL de tu API
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  login(username: string, password: string): Observable<any> {
-    // Llamada a la API para el login
-    return this.http.post<any>(this.apiUrl, { nombreUsuario: username, contraseña: password })
-      .pipe(
-        catchError(error => {
-          console.error('Error en el servicio de login', error);
-          return of(null);
-        })
-      );
+  crearUsuario(usuarioDTO: UsuarioType): Observable<UsuarioType> {
+    return this.http
+      .post<UsuarioType>(this.apiUrl, usuarioDTO, {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      })
+      .pipe(catchError(this.handleError<UsuarioType>('crearUsuario')));
   }
 
-  getCurrentUser() {
-    return JSON.parse(localStorage.getItem('currentUser') || '{}');
+  obtenerUsuarioPorId(id: number): Observable<UsuarioType | null> {
+    return this.http
+      .get<UsuarioType>(`${this.apiUrl}/${id}`)
+      .pipe(catchError(this.handleError<UsuarioType>('obtenerUsuarioPorId')));
   }
 
-  logout() {
-    localStorage.removeItem('currentUser');
+  listarUsuarios(): Observable<UsuarioType[]> {
+    return this.http
+      .get<UsuarioType[]>(this.apiUrl)
+      .pipe(catchError(this.handleError<UsuarioType[]>('listarUsuarios', [])));
   }
 
-  isLoggedIn(): boolean {
-    return !!localStorage.getItem('currentUser');
+  actualizarUsuario(
+    id: number,
+    usuarioDTO: UsuarioType
+  ): Observable<UsuarioType | null> {
+    return this.http
+      .put<UsuarioType>(`${this.apiUrl}/${id}`, usuarioDTO, {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      })
+      .pipe(catchError(this.handleError<UsuarioType>('actualizarUsuario')));
+  }
+
+  eliminarUsuario(id: number): Observable<void> {
+    return this.http
+      .delete<void>(`${this.apiUrl}/${id}`)
+      .pipe(catchError(this.handleError<void>('eliminarUsuario')));
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    };
   }
 }

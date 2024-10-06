@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, Router } from '@angular/router';
-import { UserService } from '../../services/usuario/usuario.service';
+import { LoginService } from '../../services/login/login.service';
 
 @Component({
   selector: 'app-login',
@@ -16,10 +16,10 @@ export class LoginComponent {
   password: string = '';
   errorMessage: string = '';
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
   onSubmit() {
-    this.userService.login(this.username, this.password).subscribe(
+    this.loginService.login(this.username, this.password).subscribe(
       (user) => {
         if (user) {
           localStorage.setItem('currentUser', JSON.stringify(user));
