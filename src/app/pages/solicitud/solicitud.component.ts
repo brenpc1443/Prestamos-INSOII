@@ -19,8 +19,8 @@ export class SolicitudComponent {
   seleccionarOpcion(opcion: number): void {
     this.opcion = opcion;
     // Asignar interés y cuotas en función de la opción
-    this.interes = opcion === 1 ? 10 : 20; 
-    this.cuotas = opcion === 1 ? 1 : 6; 
+    this.interes = opcion === 1 ? 10 : 20;
+    this.cuotas = opcion === 1 ? 1 : 6;
   }
 
   // Método para calcular el préstamo basado en el monto y el interés
@@ -36,6 +36,7 @@ export class SolicitudComponent {
   aprobarPrestamo(): void {
     if (this.montoTotal > 0) { // Validar que se haya calculado un monto total
       alert('Préstamo aprobado por un total de S/' + this.montoTotal);
+      
     } else {
       alert('Realice el cálculo antes de aprobar el préstamo.'); // Alerta si no se ha calculado aún
     }

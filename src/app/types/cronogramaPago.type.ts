@@ -3,8 +3,9 @@ export enum EstadoPago {
   CUMPLIDO = 'CUMPLIDO',
 }
 
-export interface CronogramaPagoDTO {
-  idCronograma: number;
+export interface CronogramaPagoType {
+  idCronograma?: number;
+  idPrestamo: number;
   fechaCronograma: string;
   montoPorPagar: number;
   estadoPago: EstadoPago;

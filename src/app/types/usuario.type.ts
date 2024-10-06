@@ -1,5 +1,5 @@
 export interface UsuarioType {
-  idUsuario: number;
+  idUsuario?: number;
   nombreUsuario: string;
   contraseña: string;
 }

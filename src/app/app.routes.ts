@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/iniciar-sesion/iniciar-sesion.component';
 import { CronogramaComponent } from './pages/cronograma/cronograma.component';
 import { ValidarUsuarioComponent } from './pages/validar-usuario/validar-usuario.component';
+import { SolicitudComponent } from './pages/solicitud/solicitud.component';
 import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
@@ -14,8 +15,13 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'validarusuario',
+    path: 'validar-usuario',
     component: ValidarUsuarioComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'solicitud',
+    component: SolicitudComponent,
     canActivate: [AuthGuard],
   },
 ];

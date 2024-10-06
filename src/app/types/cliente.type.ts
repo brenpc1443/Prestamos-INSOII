@@ -1,5 +1,5 @@
-export interface ClienteDTO {
-  idCliente: number;
+export interface ClienteType {
+  idCliente?: number;
   nombreCliente: string;
-  DNI: string;
+  dni: string;
 }

@@ -3,8 +3,8 @@ export enum TipoPrestamo {
   SEIS_MESES = 'SEIS_MESES',
 }
 
-export interface PrestamoDTO {
-  idPrestamo: number;
+export interface PrestamoType {
+  idPrestamo?: number;
   idUsuario: number;
   idCliente: number;
   monto: number;

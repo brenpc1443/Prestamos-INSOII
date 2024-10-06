@@ -3,35 +3,35 @@
     <div class="form-box">
       <form (ngSubmit)="validar()">
         <div class="form-group">
-          <label for="nombreSolicitante">Nombre del Solicitante</label>
-          <input 
-            type="text" 
-            id="nombreSolicitante" 
-            placeholder="Ingrese su nombre" 
+          <label for="nombreSolicitante">Nombre COMPLETO del Solicitante</label>
+          <input
+            type="text"
+            id="nombreSolicitante"
+            placeholder="Ingrese su nombre"
             class="form-control"
             [(ngModel)]="nombreSolicitante"
             name="nombreSolicitante"
             required
           />
         </div>
-  
+
         <div class="form-group">
           <label for="dni">DNI</label>
-          <input 
-            type="text" 
-            id="dni" 
-            placeholder="Ingrese su DNI" 
+          <input
+            type="text"
+            id="dni"
+            placeholder="Ingrese su DNI"
             class="form-control"
             [(ngModel)]="dni"
             name="dni"
-            required 
+            required
             maxlength="8"
           />
         </div>
-  
+
         <button type="submit" class="btn btn-primary">Validar</button>
       </form>
-  
+
       <!-- Mostrar mensajes de validación -->
       <div *ngIf="validacionExitosa" class="mensaje-exito">
         Validación correcta
@@ -41,4 +41,3 @@
       </div>
     </div>
   </div>
-  

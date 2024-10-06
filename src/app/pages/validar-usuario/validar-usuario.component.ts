@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { DniService } from '../../APIs/dni.service';
+import { ClienteService } from '../../services/cliente/cliente.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -18,7 +20,11 @@ export class ValidarUsuarioComponent {
   validacionExitosa: boolean | null = null;
   mensajeValidacion: string = '';
 
-  constructor(private dniService: DniService) {}
+  constructor(
+    private clienteService: ClienteService,
+    private dniService: DniService,
+    private router: Router
+  ) {}
 
   validar() {
     const nombreValido = this.nombreSolicitante.trim().length > 0;
@@ -29,9 +35,27 @@ export class ValidarUsuarioComponent {
         (response) => {
           const nombres: string = response?.data?.nombre_completo || '';
 
-          if (nombres.replace(/,/g, '') === this.nombreSolicitante) {
+          if (
+            nombres.replace(/,/g, '') === this.nombreSolicitante.toUpperCase()
+          ) {
             this.validacionExitosa = true;
             this.mensajeValidacion = '';
+
+            this.clienteService
+              .createCliente({
+                nombreCliente: this.nombreSolicitante.toUpperCase(),
+                dni: this.dni,
+              })
+              .subscribe(
+                (response) => {
+                  console.warn('acción realizada con exito')
+                },
+                (error) => {
+                  console.error('Ocurrió un error durante el registro.');
+                }
+              );
+
+            this.router.navigate(['/solicitud']);
           } else {
             this.validacionExitosa = false;
             this.mensajeValidacion = 'Los datos no coinciden';
