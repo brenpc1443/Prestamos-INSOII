@@ -29,6 +29,7 @@ export class LoginComponent {
         }
       },
       (error) => {
+        console.log(error)
         this.errorMessage =
           'Error al iniciar sesión. Inténtalo de nuevo más tarde.';
       }
