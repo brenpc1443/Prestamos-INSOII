@@ -79,8 +79,7 @@ export class SolicitudComponent {
         });
 
     } else {
-      alert('Realice el cálculo antes de aprobar el préstamo o ingrese el DNI del cliente.'); // Alerta si no se ha calculado aún o falta DNI
+      alert('Realice el cálculo antes de aprobar el préstamo.'); // Alerta si no se ha calculado aún
     }
   }
-
 }

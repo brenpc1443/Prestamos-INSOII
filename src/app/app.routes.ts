@@ -5,6 +5,7 @@ import { CronogramaComponent } from './pages/cronograma/cronograma.component';
 import { ValidarUsuarioComponent } from './pages/validar-usuario/validar-usuario.component';
 import { SolicitudComponent } from './pages/solicitud/solicitud.component';
 import { AuthGuard } from './auth.guard';
+import { DashboardComponent } from './pages/dashboard/dashboard/dashboard.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -22,6 +23,11 @@ export const routes: Routes = [
   {
     path: 'solicitud',
     component: SolicitudComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
     canActivate: [AuthGuard],
   },
 ];
