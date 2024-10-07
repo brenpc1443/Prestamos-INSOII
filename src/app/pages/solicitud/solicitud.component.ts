@@ -59,7 +59,7 @@ export class SolicitudComponent {
         dni: this.dniCliente,
         fechaSolicitud: new Date().toISOString(),
         tipoPrestamo: this.opcion === 1 ? TipoPrestamo.UN_MES : TipoPrestamo.SEIS_MESES,
-        idUsuario: this.loginService.getCurrentUser().idUsuario,
+        idUsuario: 1 /*this.loginService.getCurrentUser().idUsuario*/,
         idCliente: this.clientService.getCurrentClient().idCliente,
         monto: this.monto,
         interes: this.interes,
