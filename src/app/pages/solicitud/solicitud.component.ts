@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // Importar FormsModule para usar [(ngModel)]
+import {Component} from '@angular/core';
+import {FormsModule} from '@angular/forms'; // Importar FormsModule para usar [(ngModel)]
+import {PrestamoType, TipoPrestamo} from '../../types/prestamo.type';
+import {PrestamoService} from '../../services/prestamo/prestamo.service';
+import {LoginService} from '../../services/login/login.service';
+import {ClienteService} from '../../services/cliente/cliente.service';
 
 @Component({
   selector: 'app-solicitud',
@@ -14,6 +18,20 @@ export class SolicitudComponent {
   interes: number = 0; // Interés basado en la opción seleccionada
   cuotas: number = 0; // Número de cuotas basado en la opción seleccionada
   montoTotal: number = 0; // Resultado del monto total
+  dniCliente: string = ''; // DNI del cliente (puedes obtenerlo del formulario o de otro lado)
+
+
+  // Agregar propiedad para el servicio
+  private prestamoService: PrestamoService;
+  private loginService: LoginService;
+  private clientService: ClienteService;
+
+  // Constructor para inyectar el servicio
+  constructor(prestamoService: PrestamoService, loginService:LoginService, clientService:ClienteService) {
+    this.prestamoService = prestamoService; // Asignar el servicio a la propiedad
+    this.loginService = loginService;
+    this.clientService = clientService;
+  }
 
   // Método para seleccionar opción (1 mes o 6 meses)
   seleccionarOpcion(opcion: number): void {
@@ -32,13 +50,37 @@ export class SolicitudComponent {
     }
   }
 
-  // Método para aprobar el préstamo y mostrar el monto total
+  // Método para aprobar el préstamo, mostrar el monto total y registrar la solicitud
   aprobarPrestamo(): void {
-    if (this.montoTotal > 0) { // Validar que se haya calculado un monto total
+    if (this.montoTotal > 0 && this.dniCliente) { // Validar que se haya calculado un monto total y que haya un DNI
       alert('Préstamo aprobado por un total de S/' + this.montoTotal);
-      
+      const prestamoDTO: PrestamoType = {
+        nombreCliente: this.clientService.getCurrentClient().nombreCliente,
+        dni: this.dniCliente,
+        fechaSolicitud: new Date().toISOString(),
+        tipoPrestamo: this.opcion === 1 ? TipoPrestamo.UN_MES : TipoPrestamo.SEIS_MESES,
+        idUsuario: this.loginService.getCurrentUser().idUsuario,
+        idCliente: this.clientService.getCurrentClient().idCliente,
+        monto: this.monto,
+        interes: this.interes,
+        cuotas: this.cuotas,
+        montoTotal: this.montoTotal
+      };
+
+      // Registrar la solicitud de préstamo a través del servicio
+      this.prestamoService.registrarSolicitudPrestamo(prestamoDTO, this.dniCliente)
+        .subscribe({
+          next: (response) => {
+            alert('Solicitud registrada exitosamente: ' + response);
+          },
+          error: (error) => {
+            alert('Error al registrar la solicitud de préstamo: ' + error);
+          }
+        });
+
     } else {
-      alert('Realice el cálculo antes de aprobar el préstamo.'); // Alerta si no se ha calculado aún
+      alert('Realice el cálculo antes de aprobar el préstamo o ingrese el DNI del cliente.'); // Alerta si no se ha calculado aún o falta DNI
     }
   }
+
 }

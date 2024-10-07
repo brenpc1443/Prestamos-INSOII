@@ -47,7 +47,8 @@ export class ValidarUsuarioComponent {
                 dni: this.dni,
               })
               .subscribe(
-                (response) => {
+                (client) => {
+                  localStorage.setItem('currentClient', JSON.stringify(client));
                   console.warn('acción realizada con exito')
                 },
                 (error) => {

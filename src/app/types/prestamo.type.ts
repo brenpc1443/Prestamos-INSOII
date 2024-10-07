@@ -13,4 +13,7 @@ export interface PrestamoType {
   fechaSolicitud: string;
   nombreCliente: string;
   dni: string;
+  cuotas: number;
+  montoTotal: number;
 }
+  

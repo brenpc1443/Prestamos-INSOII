@@ -58,4 +58,9 @@ export class ClienteService {
       return of(result as T);
     };
   }
+
+  getCurrentClient() {
+    return JSON.parse(localStorage.getItem('currentClient') || '{}');
+  }
+
 }
