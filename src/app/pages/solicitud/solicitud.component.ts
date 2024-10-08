@@ -85,7 +85,11 @@ export class SolicitudComponent {
   }
 
   navigateTo(): void {
-    this.router.navigate(['/cronograma'], { queryParams: { monto: this.monto, tipoPrestamo: this.opcion } });
+    if (this.monto > 0) {
+      this.router.navigate(['/cronograma'], { queryParams: { monto: this.monto, tipoPrestamo: this.opcion } });
+    } else {
+      alert('Ingrese un monto válido.')
+    }
   }
-  
+
 }
