@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'; 
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cronograma',
@@ -12,7 +13,20 @@ import { CommonModule } from '@angular/common';
 export class CronogramaComponent {
   montoPrestamo: number = 0;  // Monto del préstamo ingresado
   tipoInteres: string = '';    // Tipo de interés seleccionado
+  opcion: number = 0;
   cronograma: any[] = [];      // Array para almacenar el cronograma de pagos
+
+  constructor(private route: ActivatedRoute){}
+
+  ngOnInit(): void {
+    // Obtener los parámetros de la URL
+    this.route.queryParams.subscribe(params => {
+      this.montoPrestamo = +params['monto']; // convertir a número
+      this.tipoInteres = +params['tipoPrestamo'] == 1 ? '10% - 1 Mes' : '20% - 6 Meses';
+
+      this.calcularCronograma()
+    });
+  }
 
   // Método para calcular el cronograma
   calcularCronograma() {
