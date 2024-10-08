@@ -66,7 +66,7 @@ export class CronogramaComponent {
           total: (cuotaFija + interesPorCuota).toFixed(2) // Total a pagar por cuota
         });
       }
-    }else{
+    } else {
       alert('Ingrese un monto válido.')
     }
   }
@@ -74,7 +74,11 @@ export class CronogramaComponent {
   // Método para calcular la fecha de pago
   calcularFechaPago(cuota: number): string {
     const fechaActual = new Date();
-    fechaActual.setMonth(fechaActual.getMonth() + cuota);
-    return fechaActual.toLocaleDateString(); // Formato de fecha
+      const fechaUnDiaAntes = new Date(fechaActual);
+      fechaUnDiaAntes.setDate(fechaActual.getDate() - 1);
+
+    const fechamostrar = fechaUnDiaAntes;
+    fechamostrar.setMonth(fechamostrar.getMonth() + cuota);
+    return fechamostrar.toLocaleDateString(); // Formato de fecha
   }
 }

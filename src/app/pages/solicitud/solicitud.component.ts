@@ -54,11 +54,17 @@ export class SolicitudComponent {
   // Método para aprobar el préstamo, mostrar el monto total y registrar la solicitud
   aprobarPrestamo(): void {
     if (this.montoTotal > 0) { // Validar que se haya calculado un monto total y que haya un DNI
+
+      const fechaActual = new Date();
+      const fechaUnDiaAntes = new Date(fechaActual);
+      fechaUnDiaAntes.setDate(fechaActual.getDate() - 1);
+
+
       alert('Préstamo aprobado por un total de S/' + this.montoTotal);
       const prestamoDTO: PrestamoType = {
         nombreCliente: this.clientService.getCurrentClient().nombreCliente,
         dni: this.dniCliente,
-        fechaSolicitud: new Date().toISOString(),
+        fechaSolicitud: fechaUnDiaAntes.toISOString(),
         tipoPrestamo: this.opcion === 1 ? TipoPrestamo.UN_MES : TipoPrestamo.SEIS_MESES,
         idUsuario: 1 /*this.loginService.getCurrentUser().idUsuario*/,
         idCliente: this.clientService.getCurrentClient().idCliente,
