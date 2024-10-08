@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms'; // Importar FormsModule para usar [(ngModel)]
 import { PrestamoType, TipoPrestamo } from '../../types/prestamo.type';
 import { PrestamoService } from '../../services/prestamo/prestamo.service';
@@ -28,18 +28,10 @@ export class SolicitudComponent {
   private clientService: ClienteService;
 
   // Constructor para inyectar el servicio
-  constructor(prestamoService: PrestamoService, loginService: LoginService, clientService: ClienteService, private router: Router, private route: ActivatedRoute) {
+  constructor(prestamoService: PrestamoService, loginService: LoginService, clientService: ClienteService, private router: Router) {
     this.prestamoService = prestamoService; // Asignar el servicio a la propiedad
     this.loginService = loginService;
     this.clientService = clientService;
-  }
-
-  ngOnInit(): void {
-    // Obtener los parámetros de la URL
-    this.route.queryParams.subscribe(params => {
-      this.monto = +params['monto']; // convertir a número
-      this.opcion = +params['tipoPrestamo'];
-    });
   }
 
   // Método para seleccionar opción (1 mes o 6 meses)
