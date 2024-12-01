@@ -46,4 +46,11 @@ export class LoginService {
   isLoggedIn(): boolean {
     return !!localStorage.getItem('currentUser');
   }
+
+  updateProfile(username: string, password: string): Observable<any> {
+    const url = 'https://prestanet-api.onrender.com/api/usuarios/actualizar'; // Cambia la URL por la correcta
+    const body = { nombreUsuario: username, contrasena: password };
+  
+    return this.http.put<any>(url, body).pipe(catchError(this.handleError));
+  }
 }
