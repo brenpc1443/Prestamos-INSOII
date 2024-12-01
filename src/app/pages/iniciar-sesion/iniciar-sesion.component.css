@@ -7,12 +7,19 @@
 }
 
 .login-box {
-  width: 300px;
-  padding: 20px;
+  width: 350px;
+  padding: 50px;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
+}
+
+.site-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #4caf50;
 }
 
 h2 {
@@ -37,6 +44,12 @@ input {
   margin: 5px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #4caf50;
+  outline: none;
 }
 
 .login-btn {
@@ -48,6 +61,7 @@ input {
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
 .login-btn:hover {
@@ -57,4 +71,24 @@ input {
 .error-message {
   color: red;
   margin-top: 10px;
+}
+
+/* Diseño responsivo */
+@media (max-width: 400px) {
+  .login-box {
+    width: 90%;
+    padding: 15px;
+  }
+
+  h1.site-title {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  .login-btn {
+    font-size: 14px;
+  }
 }

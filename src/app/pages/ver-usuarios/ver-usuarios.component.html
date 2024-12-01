@@ -1,0 +1,27 @@
+<div class="ver-usuarios-container">
+    <header class="header">
+      <h2>Lista de Usuarios</h2>
+    </header>
+  
+    <div *ngIf="users.length === 0" class="no-users-message">
+      <p>No hay usuarios registrados.</p>
+    </div>
+  
+    <table *ngIf="users.length > 0">
+      <thead>
+        <tr>
+          <th>Nombre de Usuario</th>
+          <th>Contraseña</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.username }}</td>
+          <td>{{ user.password }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <button (click)="goBack()">Regresar al Dashboard</button>
+  </div>
+  

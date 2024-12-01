@@ -1,0 +1,41 @@
+<div class="editar-perfil-container">
+    <h2>Editar Perfil</h2>
+    <form (ngSubmit)="onSubmit()">
+      <!-- Contraseña actual -->
+      <div class="form-group">
+        <label for="currentPassword">Contraseña Actual:</label>
+        <input type="password" [(ngModel)]="currentPassword" name="currentPassword" required />
+      </div>
+  
+      <!-- Nuevo nombre de usuario -->
+      <div class="form-group">
+        <label for="username">Nuevo Nombre de Usuario:</label>
+        <input type="text" [(ngModel)]="username" name="username" required />
+      </div>
+  
+      <!-- Nueva contraseña -->
+      <div class="form-group">
+        <label for="password">Nueva Contraseña:</label>
+        <input type="password" [(ngModel)]="password" name="password" required />
+      </div>
+  
+      <!-- Confirmar nueva contraseña -->
+      <div class="form-group">
+        <label for="confirmPassword">Confirmar Contraseña:</label>
+        <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required />
+      </div>
+  
+      <!-- Mensajes de error o éxito -->
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+      <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+      </div>
+  
+      <!-- Botones -->
+      <button type="submit" class="btn-submit">Guardar Cambios</button>
+      <button type="button" (click)="goBack()" class="btn-cancel">Regresar</button>
+    </form>
+  </div>
+  
